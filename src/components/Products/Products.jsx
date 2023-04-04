@@ -15,32 +15,40 @@ const Products = () => {
             .then((data) => setProducts(data))
     }, []);
 
-   useEffect(()=> {
-    const storedCart = getShoppingCart();
-    // get id from local storage added products
-    for(let id in storedCart){
-        // console.log(id)
-        // get the products by using id in local storage
-        const savedCart = products.find(pd=> pd.id === id)
-        // console.log(savedCart)
-    }
-   },[products])
+    useEffect(() => {
+        const storedCart = getShoppingCart();
+        const savedCart = [];
+        // get id from local storage
+        for (let id in storedCart) {
+            // get product by using id 
+            const addedProduct = products.find(product => product.id === id);
+            if (addedProduct) {
+                // get quantity set by id
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity
+                savedCart.push(addedProduct)
+            };
+            // console.log(savedCart)
+        };
+        setCart(savedCart)
+    }, [products]);
+
 
     const addToCart = (product) => {
         let newCart = [...cart, product];
         setCart(newCart);
-        addToDb(product.id)
-    }
+        addToDb(product.id);
+    };
 
     return (
         <div className='product-container'>
-            <div className='products'>  
+            <div className='products'>
                 {
                     products.map((product) => <Product product={product} addToCart={addToCart} key={product.id} />)
                 }
             </div>
             <div className='order-summary'>
-               <Cart cart = {cart} />
+                <Cart cart={cart} />
             </div>
         </div>
     );

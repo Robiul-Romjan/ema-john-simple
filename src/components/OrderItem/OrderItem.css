@@ -1,0 +1,24 @@
+.product-item{
+    width: 70%;
+    border: 1px solid gray;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.product-item img{
+    width: 100px;
+}
+
+.product-details{
+    flex-grow: 1;
+}
+
+.product-delete{
+    height: 55px;
+    width: 55px;
+    background: rgba(235, 87, 87, 0.3);
+    border-radius: 50%;
+    border: none;
+    color: #EB5757;
+}

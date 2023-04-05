@@ -1,8 +1,7 @@
 import React from 'react';
 import './Cart.css'
-import { deleteShoppingCart, removeFromDb } from '../../utilities/fakedb';
 
-const Cart = ({cart}) => {
+const Cart = ({cart, handleDelete}) => {
 
     let totalPrice = 0;
     let shippingCharge = 0;
@@ -29,9 +28,6 @@ const Cart = ({cart}) => {
             <p>Total Shipping Charge: ${shippingCharge} </p>
             <p>Tax: ${tax} </p> 
             <h4>Grand Total: ${grandTotal} </h4>
-            <div>
-                <button>Delete All</button>
-            </div>
         </div>
     );
 };

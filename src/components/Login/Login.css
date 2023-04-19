@@ -1,0 +1,20 @@
+.form-container{
+    width: 600px;
+    margin: 40px auto;
+}
+.form{
+    border: 1px solid #95A0A7;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 0 auto;
+    width: 500px;
+}
+
+.form input{
+    width: 400px;
+    padding: 10px;
+}
+ hr{
+    width: 40%;
+    display: inline-block;
+}

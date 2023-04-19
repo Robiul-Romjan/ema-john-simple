@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getShoppingCart } from '../../utilities/fakedb';
+import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Products.css'
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -40,6 +43,11 @@ const Products = () => {
         addToDb(product.id);
     };
 
+    const handleAllDelete = () => {
+        setCart([]);
+        deleteShoppingCart();
+    }
+
     return (
         <div className='product-container'>
             <div className='products'>
@@ -48,7 +56,12 @@ const Products = () => {
                 }
             </div>
             <div className='order-summary'>
-                <Cart cart={cart} />
+                <Cart cart={cart} handleAllDelete={handleAllDelete}>
+                    <button className='clearAll-btn'>
+                        <Link to="/order">Review Order</Link>
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                </Cart>
             </div>
         </div>
     );

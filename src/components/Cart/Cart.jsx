@@ -1,7 +1,11 @@
 import React from 'react';
 import './Cart.css'
 
-const Cart = ({cart, handleDelete}) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
+
+const Cart = ({cart, handleAllDelete, children}) => {
 
     let totalPrice = 0;
     let shippingCharge = 0;
@@ -28,6 +32,14 @@ const Cart = ({cart, handleDelete}) => {
             <p>Total Shipping Charge: ${shippingCharge} </p>
             <p>Tax: ${tax} </p> 
             <h4>Grand Total: ${grandTotal} </h4>
+
+            <button onClick={handleAllDelete} className='clearAll-btn'>
+                <span>Clear All</span>
+                <FontAwesomeIcon icon={faTrashAlt} />
+            </button>
+            {
+                children
+            }
         </div>
     );
 };
